@@ -1,19 +1,4 @@
 {
   "name": "Devcontainer",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-bookworm",
-
-  // Install Dependencies
-  "postCreateCommand": "pnpm install",
-
-  // Start the application when the user attaches to the environment
-  "postAttachCommand": "pnpm run dev",
-
-  // Automatically forward ports and open the application in the as a preview
-  "portsAttributes": {
-    "4321": {
-      "label": "Application",
-      "onAutoForward": "openPreview"
-    }
-  }
-
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-bookworm"
 }
