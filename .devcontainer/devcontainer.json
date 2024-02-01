@@ -1,4 +1,6 @@
 {
   "name": "Devcontainer",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-bookworm"
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-bookworm",
+
+  "postCreateCommand": "pnpm install"
 }
