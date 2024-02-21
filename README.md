@@ -1,17 +1,84 @@
-# Astro with Tailwind
+# Code100 Competition - NodeJS/JavaScript Sample
 
-```sh
-npm create astro@latest -- --template with-tailwindcss
+This codebase contains everything you need to complete coding challenges of the Code100 competition in NodeJS / JavaScript.
+The code example of communicating with the API is already present in the `code100.js` file.
+
+If you need additional information regarding the API you may find it in the rest of this document.
+
+## API Base URL
+```
+https://challenger.code100.dev
 ```
 
-Astro comes with [Tailwind](https://tailwindcss.com) support out of the box. This example showcases how to style your Astro project with Tailwind.
-
-For complete setup instructions, please see our [Tailwind Integration Guide](https://docs.astro.build/en/guides/integrations-guide/tailwind).
-
-# Run the example
-
-```sh
-pnpm run dev
+## Swagger Documentation
 ```
+https://challenger.code100.dev/doc/
+```
+## Login
 
-Will run the current code and prompt you to open a browser.
+In order to request the coding puzzle or submit the solution, you first need to retrieve the JSON Web Token by logging into the API:
+
+### Request
+```
+POST /login
+```
+### Body
+```
+{
+  "email": <email here>,
+  "password": <password here>
+}
+```
+### Response
+```
+{
+   ...
+   "token": <JWT token>
+   ...
+}
+```
+The token given in this response needs to be supplied for the Request Puzzle and Submit Solution requests.
+
+## Request Puzzle
+
+### Request
+```
+GET /getpuzzle
+```
+### Headers
+```
+Authorization: Bearer <JWT token>
+```
+### Response
+```
+{
+  "name": <name of the puzzle>,
+  "input": <coding challenge>
+}
+```
+(coding challenge depends from round to round)
+
+## Submit Solution
+
+### Request
+```
+POST /postanswer
+```
+### Headers
+```
+Authorization: Bearer <JWT token>
+```
+### Body
+```
+{
+  "answer": <your solution to the posted puzzle>
+}
+```
+### Response
+
+There is a 15 seconds delay for you to receive the answer for this request.
+```
+{
+  "message": <information if solution was correct or not>,
+}
+```
